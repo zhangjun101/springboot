@@ -7,11 +7,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.kafka.core.KafkaOperations;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.support.GenericMessage;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.concurrent.ListenableFuture;
 
 import javax.annotation.Resource;
@@ -69,14 +71,42 @@ public class ProducerTest {
 
 
     /**
-     * 消息回调
+     * 生产监听回调
      * */
     @Test
+    @Transactional
     public void testProducerListen() throws InterruptedException {
         kafkaTemplate.setProducerListener(producerListener);
         kafkaTemplate.send("topic.quick.initial",0,1,"huidaotest");
         Thread.sleep(1000);
     }
 
+    /**
+     * kakfa事物测试(方式1)
+     * 配置Kafka事务管理器并使用@Transactional注解
+     * @throws InterruptedException
+     */
+    @Test
+    @Transactional
+    public void testTransactionalAnnotation() throws InterruptedException {
+        kafkaTemplate.send("topic.quick.initial", 0,0,"test transactional annotation");
+        throw new RuntimeException("fail");
+    }
+
+    /**
+     * 使用KafkaTemplate.executeInTransaction开启事务
+     * @throws InterruptedException
+     */
+    @Test
+    public void testExecuteInTransaction() throws InterruptedException {
+        kafkaTemplate.executeInTransaction(new KafkaOperations.OperationsCallback() {
+            @Override
+            public Object doInOperations(KafkaOperations kafkaOperations) {
+                kafkaOperations.send("topic.quick.initial", 0,0,"test executeInTransaction");
+                throw new RuntimeException("fail");
+                //return true;
+            }
+        });
+    }
 
 }
