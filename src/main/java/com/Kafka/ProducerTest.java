@@ -43,12 +43,12 @@ public class ProducerTest {
     }
 
 
-    @Test
-    public void testDemo2() throws InterruptedException {
-        defaultKafkaTemplate.sendDefault(1,"321423");
-        //休眠5秒，为了使监听器有足够的时间监听到topic的数据
-        Thread.sleep(5000);
-    }
+//    @Test
+//    public void testDemo2() throws InterruptedException {
+//        defaultKafkaTemplate.sendDefault(1,"321423");
+//        //休眠5秒，为了使监听器有足够的时间监听到topic的数据
+//        Thread.sleep(5000);
+//    }
 
 
     @Test
