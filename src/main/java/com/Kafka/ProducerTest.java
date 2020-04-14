@@ -35,12 +35,12 @@ public class ProducerTest {
     private KafkaSendResultHandler producerListener;
 
 
-    @Test
-    public void testDemo() throws InterruptedException {
-        kafkaTemplate.send("topic.quick.initial",new Integer(2),2,"firstdata");
-        //休眠5秒，为了使监听器有足够的时间监听到topic的数据
-        Thread.sleep(5000);
-    }
+//    @Test
+//    public void testDemo() throws InterruptedException {
+//        kafkaTemplate.send("topic.quick.initial",new Integer(2),2,"firstdata");
+//        //休眠5秒，为了使监听器有足够的时间监听到topic的数据
+//        Thread.sleep(5000);
+//    }
 
 
     @Test
