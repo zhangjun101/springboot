@@ -17,9 +17,8 @@ import java.util.List;
 @RequestMapping("/test")
 public class AreaFenceController {
 
-    @GetMapping("/get")
-    @ResponseBody
-    public Object saveAreaFence(){
-        return "a";
+    @GetMapping("/healthyTest")
+    public Object healthyTest(){
+        return "ok";
     }
 }

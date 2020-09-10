@@ -1,7 +1,7 @@
 ### 项目名称 springboot-pro
 ###服务端口号
 server:
-  port: 8081
+  port: 8080
 
 ###服务名称(服务注册到eureka名称)  
 spring:
@@ -9,9 +9,9 @@ spring:
     name: springboot-pro
 
 ####kafka设置
-  kafka:
-    # 以逗号分隔的地址列表，用于建立与Kafka集群的初始连接(kafka 默认的端口号为9092)
-    bootstrap-servers: 127.0.0.1:9092
+#  kafka:
+#    # 以逗号分隔的地址列表，用于建立与Kafka集群的初始连接(kafka 默认的端口号为9092)
+#    bootstrap-servers: 127.0.0.1:9092
 #    producer:
 #      #发生错误后，消息重发的次数。
 #      retries: 0
