@@ -35,7 +35,6 @@ build/
 
 ####target####
 /target
-/readme - 副本.txt
 /mvnw
 /mvnw.cmd
 /.mvn/
